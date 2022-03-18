@@ -1,28 +1,40 @@
 //global variables
-float imageX, imageY, imageWidth, imageHeight, imageWidthRatio, imageHeightRatio;
-int largerDimension, smallerDimension;
+float imageX, imageY, imageWidth, imageHeight, imageWidthRatio=0.0, imageHeightRatio=0.0;
+float picWidth, picHeight, largerDimension, smallerDimension;
 PImage pic;
+Boolean widthLarger=false, heightLarger=false;
 //
 fullScreen();
-if (width >= height) { 
-  largerDimension = width; 
-  smallerDimension = height;
-} else  { 
-  largerDimension = height; 
-  smallerDimension = width;
-}
-println (smallerDimension, largerDimension);
 //fullscreen();
 //population
-pic = loadImage("frog-720.jpg"); //dimensions ?, ?
-imageWidthRatio = float (largerDimension / largerDimension); //larger # for aspect ratio
-println(imageWidthRatio);
-imageHeightRatio = float ( smallerDimension / largerDimension); //similar to style="height:auto"
+pic=loadImage("frog-720.jpg"); //dimensions 720, 406
+picWidth = 720.0;
+picHeight = 406.0;
+if (picWidth >= picHeight) { 
+  largerDimension = picWidth; 
+  smallerDimension = picHeight;
+  widthLarger = true;
+} else  { 
+  largerDimension = picHeight; 
+  smallerDimension = picWidth;
+  heightLarger = true;
+}
+println(smallerDimension, largerDimension);
+
+if( widthLarger == true )imageWidthRatio = largerDimension / largerDimension;
+if( widthLarger == true )imageHeightRatio = smallerDimension / largerDimension;
+if( heightLarger == true) imageWidthRatio = smallerDimension / largerDimension;
+if( heightLarger == true) imageHeightRatio = largerDimension / largerDimension;
+println(imageWidthRatio, imageHeightRatio);
+
+println(imageWidthRatio, imageHeightRatio);
+imageHeightRatio = smallerDimension / largerDimension; //similar to style="height:auto"
 imageX = width*0;
 imageY = height*0;
 imageWidth = width*imageWidthRatio;
 imageHeight = height*imageHeightRatio;
-
+if (imageWidth > width) println ("ERROR: IMAGE TOO WIDE");
+if(imageHeight > height) println ("ERROR:  IMAGE TOO HIGH");
 //
 rect(imageX, imageY, imageWidth, imageHeight);
-//image(pic, imageX, imageY, imageWidth, imageHeight);
+image (pic,imageX, imageY, imageWidth, imageHeight);
