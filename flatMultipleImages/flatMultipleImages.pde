@@ -2,7 +2,7 @@
 PImage pic1, pic2;
 float rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1;
 float rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2;
-color purple=#803DBC;
+color greenfrog=#3FD883;
 //
 //Geometry: display and orientation (landscape, portrait, and square)
 fullScreen();
@@ -51,14 +51,14 @@ if ( heightPic2Larger == true ) imageWidthRatioPic2 = float (smallerPic2Dimensio
 if ( heightPic2Larger == true ) imageHeightRatioPic2 = float (largerPic2Dimension) / float (largerPic2Dimension);
 println(imageWidthRatioPic1, imageHeightRatioPic1, imageWidthRatioPic2, imageHeightRatioPic2);
 //
-rectXPic1 = width*1/4;
-rectYPic1 = height*0;
-rectWidthPic1 = width*1/2;
-rectHeightPic1 = height*1/2;
-rectXPic2 = width*1/8;
-rectYPic2 = height*1/2;
-rectWidthPic2 = width*6/8;
-rectHeightPic2 = height*1/2;
+rectXPic1 = displayWidth*1/4;
+rectYPic1 = displayHeight*0;
+rectWidthPic1 = displayWidth*1/2;
+rectHeightPic1 = displayHeight*1/2;
+rectXPic2 = displayWidth*1/8;
+rectYPic2 = displayHeight*1/2;
+rectWidthPic2 = displayWidth*6/8;
+rectHeightPic2 = displayHeight*1/2;
 //
 //Adjusted widths and heights to rectangle layouts
 float pic1WidthAdjusted, pic1HeightAdjusted, pic2WidthAdjusted, pic2HeightAdjusted;
@@ -66,12 +66,17 @@ pic1WidthAdjusted = rectWidthPic1 * imageWidthRatioPic1;
 pic1HeightAdjusted = rectHeightPic1 * imageHeightRatioPic1;
 pic2WidthAdjusted = rectWidthPic2 * imageWidthRatioPic2;
 pic2HeightAdjusted = rectHeightPic2 * imageHeightRatioPic2;
-//
+println(pic1Width, pic1Height, pic2Width, pic2Height);
+println(pic1WidthAdjusted, pic1HeightAdjusted, pic1WidthAdjusted, pic1HeightAdjusted);
 //rectangle layout and image drawing to canvas
 //
-fill(purple);
+fill(greenfrog);
 rect(rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1); //for image 1
 rect(rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2); // for image 2
-image(pic1, rectXPic1, rectYPic1, pic1WidthAdjusted, pic1HeightAdjusted); // for image 1
+//Rectangle coords only
+//image(pic1, rectXPic1, rectYPic1, rectWidthPic1, rectHeightPic1); // for image 1
 image(pic2, rectXPic2, rectYPic2, rectWidthPic2, rectHeightPic2);
+//aspect ratio
+image(pic1, rectXPic1, rectYPic1, pic1WidthAdjusted, pic1HeightAdjusted); // for image 1
+//image(pic2, rectXPic2, rectYPic2, pic2WidthAdjusted, pic2HeightAdjusted);
 //
